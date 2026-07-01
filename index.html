@@ -12,10 +12,11 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
 .screen.hidden{opacity:0;pointer-events:none;transform:scale(.97);}
 
 /* ANA MENÜ */
-#screen-menu{background:radial-gradient(ellipse at 50% 30%,#0d2e0d,#071207 70%);}
+#screen-menu{background:radial-gradient(ellipse at 50% 20%,#103a18 0%,#06140a 55%,#020a05 100%);}
 #menu-bg-canvas{position:absolute;inset:0;z-index:0;}
 .menu-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;}
-.menu-logo{font-size:clamp(34px,7vw,68px);font-weight:900;color:#fff;letter-spacing:4px;text-shadow:0 0 40px #00e676aa,0 4px 0 #00000080;margin-bottom:4px;}
+.menu-logo{font-size:clamp(34px,7vw,68px);font-weight:900;color:#fff;letter-spacing:3px;text-shadow:0 0 50px #00e676cc,0 2px 0 #00b34880,0 6px 18px #00000090;margin-bottom:4px;font-style:italic;}
+.menu-logo .ball-ico{display:inline-block;font-style:normal;filter:drop-shadow(0 0 12px #ffffffaa);}
 .menu-logo span{color:#00e676;}
 .menu-sub{font-size:13px;color:#4a7a4a;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;}
 .menu-badge{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;justify-content:center;}
@@ -155,7 +156,7 @@ body{background:#071207;overflow:hidden;font-family:'Segoe UI',sans-serif;touch-
 <div id="screen-menu" class="screen">
   <canvas id="menu-bg-canvas"></canvas>
   <div class="menu-content">
-    <div class="menu-logo">MİNİ<span>GOLF</span></div>
+    <div class="menu-logo">⛳ MİNİ<span>GOLF</span></div>
     <div class="menu-sub">3D · 1000 Delik</div>
     <div class="menu-badge">
       <div class="mbadge">⛳ 1000 DELİK</div>
@@ -427,19 +428,19 @@ const Save = {
 Save.load();
 
 // ═══════════════════════════════════════════════
-//  DÜNYA TEMAları
+//  DÜNYA TEMAları — Profesyonel mini golf görünümü
 // ═══════════════════════════════════════════════
 const WORLDS = [
-  {name:'Çayırlar',   floorColor:0x2d7a2d,wallColor:0xc8a46e,obstColor:0xe05020,sky:0x0d1a0d},
-  {name:'Çöl',        floorColor:0xb8953a,wallColor:0xd4824a,obstColor:0xcc5500,sky:0x1a1005},
-  {name:'Arktik',     floorColor:0x9bd4e8,wallColor:0xc8dde8,obstColor:0x4a8aaa,sky:0x071020},
-  {name:'Volkan',     floorColor:0x3a1a08,wallColor:0x8a3010,obstColor:0xff5500,sky:0x150508},
-  {name:'Orman',      floorColor:0x1a5a1a,wallColor:0x2a7a2a,obstColor:0x8a6020,sky:0x071007},
-  {name:'Gece Şehri', floorColor:0x151520,wallColor:0x303048,obstColor:0x8844cc,sky:0x05050f},
-  {name:'Şeker',      floorColor:0xf06090,wallColor:0xf0b030,obstColor:0x50d0f0,sky:0x1a0510},
-  {name:'Kristal',    floorColor:0x204060,wallColor:0x406080,obstColor:0x80c0ff,sky:0x020810},
-  {name:'Lav',        floorColor:0x400800,wallColor:0x802000,obstColor:0xff8800,sky:0x120300},
-  {name:'Uzay',       floorColor:0x0a0a20,wallColor:0x202040,obstColor:0x00ffcc,sky:0x010108}
+  {name:'Çayırlar',   grass1:0x3fae46,grass2:0x359a3c,wood:0x8a5a2e,woodDark:0x6b4423,obstColor:0xe05020,skyTop:0x69c3ff,skyBot:0xbfe8ff,fog:0xcfeeff,sun:0xfff2cf,decor:'meadow'},
+  {name:'Çöl',        grass1:0xd9b35c,grass2:0xc89f49,wood:0x8a5a2e,woodDark:0x6b4423,obstColor:0xcc5500,skyTop:0xffb070,skyBot:0xffe0b0,fog:0xffe5c2,sun:0xffe9b0,decor:'desert'},
+  {name:'Arktik',     grass1:0xeaf6ff,grass2:0xd3edff,wood:0x6f7b85,woodDark:0x4f5a63,obstColor:0x4a8aaa,skyTop:0x8fd0ff,skyBot:0xe8f7ff,fog:0xeaf8ff,sun:0xffffff,decor:'arctic'},
+  {name:'Tropik',     grass1:0x3fc46a,grass2:0x30ab57,wood:0x9a6a35,woodDark:0x7a4f23,obstColor:0x1fa3c7,skyTop:0x4fc9ff,skyBot:0xc9f3ff,fog:0xd6f6ff,sun:0xfff7d6,decor:'tropical'},
+  {name:'Orman',      grass1:0x2f8f3e,grass2:0x267731,wood:0x6b4a2c,woodDark:0x4f3620,obstColor:0x8a6020,skyTop:0x5fb8e0,skyBot:0xcfead0,fog:0xd8eed8,sun:0xfff0c0,decor:'forest'},
+  {name:'Gece Şehri', grass1:0x1c3a52,grass2:0x163049,wood:0x2c3550,woodDark:0x1c2236,obstColor:0x8844cc,skyTop:0x0a0a2a,skyBot:0x2a1a4a,fog:0x140a2a,sun:0xff66cc,decor:'night'},
+  {name:'Şeker',      grass1:0xff8fc0,grass2:0xff6fae,wood:0xffb74d,woodDark:0xe0922c,obstColor:0x50d0f0,skyTop:0xffb6e6,skyBot:0xfff0fa,fog:0xffe6f5,sun:0xffffff,decor:'candy'},
+  {name:'Kristal',    grass1:0x4f7fc0,grass2:0x3f68a8,wood:0x6c7ea6,woodDark:0x4c5c80,obstColor:0x80c0ff,skyTop:0x1a2a55,skyBot:0x4060a0,fog:0x2a3a6a,sun:0xbfe0ff,decor:'crystal'},
+  {name:'Lav',        grass1:0x4a2a1a,grass2:0x3a2012,wood:0x5a3018,woodDark:0x3a1d0d,obstColor:0xff8800,skyTop:0x2a0a05,skyBot:0x7a2a0a,fog:0x3a1208,sun:0xff5500,decor:'lava'},
+  {name:'Uzay',       grass1:0x2a2a4a,grass2:0x202038,wood:0x4a4a6a,woodDark:0x32324a,obstColor:0x00ffcc,skyTop:0x05050f,skyBot:0x10082a,fog:0x0a0618,sun:0x88ffee,decor:'space'}
 ];
 
 // ═══════════════════════════════════════════════
@@ -454,41 +455,125 @@ function generateLevel(idx){
   const rng=seededRand(n*73856093^n*19349663^n*83492791);
   const worldIdx=Math.floor(idx/100);
   const world=WORLDS[worldIdx];
-  const localDiff=((n-1)%100)/99;
-  const fw=18+Math.floor(localDiff*18);
-  const fd=6+Math.floor(localDiff*8);
-  const pattern=(n-1)%8;
-  const margin=2.5;
-  const ballStart={x:-(fw/2-margin),z:(rng()-.5)*(fd-3)};
-  const holePos={x:(fw/2-margin),z:(rng()-.5)*(fd-3)};
-  const par=Math.max(2,Math.min(7,2+Math.floor(localDiff*5)));
-  const diff=Math.min((n-1)/999,1);
-  const windAngle=rng()*Math.PI*2;
-  const windStr=diff*1.2;
-  const wind={x:Math.cos(windAngle)*windStr*rng(),z:Math.sin(windAngle)*windStr*rng()};
+
+  // ── GLOBAL ZORLUK EĞRİSİ (1000 level boyunca kesintisiz artar) ──
+  // 0 → 1 arası, hafif ease-in ile başta yavaş, sonra hızlı zorlaşır.
+  const globalT = (n-1)/999; // 0..1
+  const globalDiff = Math.pow(globalT, 0.78); // ease — başlangıç biraz daha kolay kalsın
+  // Her dünya içinde de mikro artış (aynı dünyada level 1 vs level 100 farklı hissettirsin)
+  const localT = ((n-1)%100)/99;
+  // Kombine zorluk: ağırlıklı olarak global, biraz da local varyasyon
+  const diff = Math.min(1, globalDiff*0.82 + localT*0.18*globalDiff + localT*0.06);
+
+  // ── SAHA BOYUTU ──
+  const fw = 20 + Math.floor(diff*55);
+  const fd = 6  + Math.floor(diff*10);
+  const margin = 3.5; // duvardan daha fazla içeride başla
+  const ballStart = { x: -(fw/2 - margin), z: (rng()-.5)*(fd*0.3) };
+  const holePos   = { x:  (fw/2 - margin), z: (rng()-.5)*(fd*0.3) };
+
+  // ── PAR ──
+  const par = Math.max(2, Math.min(9, 2 + Math.round(diff * 7)));
+
+  // ── RÜZGAR ──
+  const windAngle = rng()*Math.PI*2;
+  const windStr = Math.max(0, diff-0.12) * 1.5;
+  const wind = { x: Math.cos(windAngle)*windStr*(0.4+rng()*0.6), z: Math.sin(windAngle)*windStr*(0.4+rng()*0.6) };
+
+  // ── PARKUR DESENİ ──
+  let patternPool;
+  if      (diff < 0.18) patternPool = [0,1];
+  else if (diff < 0.38) patternPool = [0,1,2,3];
+  else if (diff < 0.62) patternPool = [2,3,4,5];
+  else if (diff < 0.85) patternPool = [4,5,6,7];
+  else                  patternPool = [6,7,8,9];
+  const pattern = patternPool[Math.floor(rng()*patternPool.length)];
+
+  // ── PARKUR GENİŞLİĞİ ──
+  const pathWidth = Math.max(1.8, 4.2 - diff*2.4 + rng()*0.6);
+
+  // ── PARKUR YOLU ──
+  // Giriş ve çıkış tampon noktaları: duvar başlangıç/bitiş toptan uzakta olsun.
+  // pathPts[0] = gerçek giriş duvarı konumu (ballStart'ın biraz gerisinde)
+  // pathPts[1] = ballStart (topun başladığı yer — duvarın içinde değil!)
+  // pathPts[son-1] = holePos
+  // pathPts[son] = gerçek çıkış duvarı konumu
+  const bufX = (fw / (8 + Math.floor(diff*18) + 2)); // bir segment genişliği kadar tampon
+
+  const entryWall = { x: ballStart.x - bufX * 1.2, z: ballStart.z };
+  const exitWall  = { x: holePos.x   + bufX * 1.2, z: holePos.z   };
+
+  const segs = 8 + Math.floor(diff*18);
+  const pathPts = [];
+  pathPts.push(entryWall); // [0] — başlangıç duvarı buraya
+  pathPts.push({ x: ballStart.x, z: ballStart.z }); // [1] — top buraya spawn
+
+  const wobBase = (fd*0.38) * (0.3 + diff*1.3);
+  const freq = 1 + Math.floor(diff*5);
+
+  for (let i=1; i<segs; i++){
+    const t = i/segs;
+    const baseX = ballStart.x + (holePos.x - ballStart.x)*t;
+    let wob;
+    switch(pattern % 5){
+      case 0: wob = Math.sin(t*Math.PI) * wobBase * 0.5; break;
+      case 1: wob = t < 0.5 ? 0 : (t-0.5)*2 * wobBase * 1.4 * (rng()>0.5?1:-1); break;
+      case 2: wob = Math.sin(t*Math.PI*freq) * wobBase * (0.5+rng()*0.6); break;
+      case 3: wob = Math.sin(t*Math.PI*2) * wobBase * 0.9; break;
+      case 4: wob = Math.sin(t*Math.PI*freq + rng()*2) * wobBase * (0.6+rng()*0.8) + (rng()-.5)*fd*0.2; break;
+    }
+    let baseZ = ballStart.z + (holePos.z - ballStart.z)*t + wob;
+    baseZ = Math.max(-fd/2 + pathWidth*0.65, Math.min(fd/2 - pathWidth*0.65, baseZ));
+    pathPts.push({ x: baseX, z: baseZ });
+  }
+
+  pathPts.push({ x: holePos.x, z: holePos.z }); // sondan-1 — delik buraya
+  pathPts.push(exitWall); // son — bitiş duvarı buraya
+
+  // ── DUVAR ENGELLERİ: zorlukla sayı ve sıklık artar ──
   const walls=[];
-  const maxWalls=Math.floor(localDiff*5);
-  const numWalls=pattern<4?Math.min(maxWalls,Math.floor(rng()*(maxWalls+1))):0;
-  for(let i=0;i<numWalls;i++){
-    const wx=(rng()-.5)*(fw-4),wz=(rng()-.5)*(fd-2);
-    const isH=rng()>.5,wlen=2+rng()*5;
-    const ww=isH?wlen:1+rng()*.5,wd=isH?1+rng()*.5:wlen;
-    if(Math.hypot(wx-ballStart.x,wz-ballStart.z)>3&&Math.hypot(wx-holePos.x,wz-holePos.z)>3)
-      walls.push({x:wx,z:wz,w:ww,d:wd,h:1+rng()*.4});
+  const wallDensity = diff*diff; // kuadratik artış — geç gelir ama hızlı çoğalır
+  const maxWalls = Math.floor(wallDensity*9);
+  if (maxWalls>0 && pathPts.length>3){
+    const numWalls = 1+Math.floor(rng()*maxWalls);
+    for(let i=0;i<numWalls;i++){
+      const segIdx = 1 + Math.floor(rng()*(pathPts.length-3));
+      const p = pathPts[segIdx];
+      const isH = rng()>.5;
+      const wlen = Math.min(pathWidth*0.62, 1.0+rng()*1.8);
+      const ww = isH?wlen:0.45+rng()*.3, wd = isH?0.45+rng()*.3:wlen;
+      const offset = (rng()-0.5)*pathWidth*0.32;
+      walls.push({x:p.x+(isH?0:offset), z:p.z+(isH?offset:0), w:ww, d:wd, h:0.5+rng()*.35+diff*0.25});
+    }
   }
+
+  // ── DÖNER/SİLİNDİR ENGELLER: zorlukla artar ──
   const obstacles=[];
-  const maxObs=Math.floor(localDiff*6);
-  const numObs=pattern>=4?Math.min(maxObs,Math.floor(rng()*(maxObs+1))):Math.floor(rng()*2);
-  for(let i=0;i<numObs;i++){
-    const ox=(rng()-.5)*(fw-4),oz=(rng()-.5)*(fd-2);
-    if(Math.hypot(ox-ballStart.x,oz-ballStart.z)>2.5&&Math.hypot(ox-holePos.x,oz-holePos.z)>2.5)
-      obstacles.push({x:ox,z:oz,r:.4+rng()*.6});
+  const obsDensity = diff*diff;
+  const maxObs = Math.floor(obsDensity*10);
+  if (maxObs>0 && pathPts.length>3){
+    const numObs = 1+Math.floor(rng()*maxObs);
+    for(let i=0;i<numObs;i++){
+      const segIdx = 1 + Math.floor(rng()*(pathPts.length-3));
+      const p = pathPts[segIdx];
+      const offset = (rng()-0.5)*pathWidth*0.5;
+      const perpAngle = rng()*Math.PI;
+      obstacles.push({x:p.x+Math.cos(perpAngle)*offset*0.3, z:p.z+offset, r:.28+rng()*.36+diff*0.12});
+    }
   }
-  if(pattern===6&&localDiff>.4){
-    const steps=2+Math.floor(localDiff*3);
-    for(let i=1;i<=steps;i++) walls.push({x:-fw/2+(fw/(steps+1))*i,z:(i%2===0?1:-1)*(fd/4),w:1.2,d:fd/2+1,h:1.1});
+
+  // ── DAR GEÇİT (gate): çok zor levellerde iki engel arasında dar bir kapı zorunlu geçiş ──
+  if (diff > 0.7 && pathPts.length > 4){
+    const gateSeg = Math.floor(pathPts.length*0.5);
+    const p = pathPts[gateSeg];
+    const gateGap = pathWidth * (0.32 + rng()*0.12);
+    walls.push({x:p.x, z:p.z - gateGap, w:0.4, d:pathWidth*0.6, h:0.65});
+    walls.push({x:p.x, z:p.z + gateGap, w:0.4, d:pathWidth*0.6, h:0.65});
   }
-  return{idx,n,world,worldIdx,par,wind,ballStart,holePos,floor:{w:fw,d:fd},floorOffset:{x:0,z:0},walls,obstacles,name:`DELİK ${n} — ${world.name.toUpperCase()}`};
+
+  return{idx,n,world,worldIdx,par,wind,ballStart,holePos,floor:{w:fw,d:fd},floorOffset:{x:0,z:0},walls,obstacles,
+    pathPts, pathWidth, difficulty:diff,
+    name:`DELİK ${n} — ${world.name.toUpperCase()}`};
 }
 
 // ═══════════════════════════════════════════════
@@ -663,14 +748,8 @@ let engineReady=false;
 let lastTime=0;
 let activeMode=null;
 
-// ─── DİNAMİK KAMERA sistemi ──────────────────
-// Kamera topun hız yönüne döner
-const camPivot = new THREE.Object3D();  // dönen pivot
-const camArmLength = 12;
-const camHeight = 7;
-let camYaw = 0;       // hedef yaw (radyan)
-let camYawCurrent = 0;// yumuşatılmış
-let camYawLocked = false; // vuruş anındaki yaw kilitli mi
+// ─── KAMERA SABİTLERİ ─────────────────────────
+let camYaw = 0, camYawCurrent = 0;
 
 // ─── SıRA SİSTEMİ ────────────────────────────
 // turnOrder: ['player', 'ai0', 'ai1', ...] döngüsel
@@ -726,6 +805,7 @@ function cleanupLevel(){
   if(scene){while(scene.children.length)scene.remove(scene.children[0]);}
   if(world){for(const b of [...world.bodies])world.removeBody(b);}
   levelObjs=[];ballMesh=ballBody=holeMesh=flagMesh=null;
+  skyDome=null; cloudGroup=null; animatedObstacles=[];
   aiPlayers=[];levelComplete=false;ballMoving=false;isDragging=false;
   turnOrder=[];turnIndex=0;currentTurnEntity='player';waitingForBallStop=false;
   stopRoll();
@@ -757,24 +837,21 @@ function loadGame(idx,mode){
   document.getElementById('all-clear').classList.remove('show');
   updateWindUI(windVec);
 
-  scene.background=new THREE.Color(lvl.world.sky);
-  scene.fog=new THREE.Fog(lvl.world.sky,35,90);
+  scene.fog = new THREE.Fog(lvl.world.fog, 45, 110);
 
-  // Işıklar
-  const amb=new THREE.AmbientLight(0x88cc88,.5);scene.add(amb);
-  const sun=new THREE.DirectionalLight(0xffffff,1.2);
-  sun.position.set(10,20,10);sun.castShadow=true;
-  sun.shadow.mapSize.set(1024,1024);
+  // Işıklar — profesyonel gün ışığı seti
+  const amb=new THREE.AmbientLight(lvl.world.sun, 0.55); scene.add(amb);
+  const sun=new THREE.DirectionalLight(lvl.world.sun, 1.35);
+  sun.position.set(12,22,8); sun.castShadow=true;
+  sun.shadow.mapSize.set(1536,1536);
   sun.shadow.camera.left=-35;sun.shadow.camera.right=35;
   sun.shadow.camera.top=35;sun.shadow.camera.bottom=-35;
-  sun.shadow.camera.far=80;sun.shadow.bias=-.001;
+  sun.shadow.camera.far=90;sun.shadow.bias=-.0012;
   scene.add(sun);
-  scene.add(new THREE.HemisphereLight(0x226622,0x112211,.35));
-  addStars();
+  scene.add(new THREE.HemisphereLight(lvl.world.skyTop, lvl.world.grass2, 0.45));
+  levelObjs.push({mesh:amb},{mesh:sun});
 
   buildFloor(lvl);buildBoundaryWalls(lvl);
-  lvl.walls.forEach(w=>addWall(w,lvl.world.wallColor));
-  lvl.obstacles.forEach(o=>addObstacle(o,lvl.world.obstColor));
   addHole(lvl.holePos);
   addBall(lvl.ballStart);
 
@@ -786,7 +863,8 @@ function loadGame(idx,mode){
       :[AI_PROFILES[mode]];
     const cols=[0xff8c42,0x4fc3f7,0xce93d8];
     profiles.forEach((prof,i)=>{
-      const offset={x:lvl.ballStart.x+(i+1)*.5,z:lvl.ballStart.z+(i+1)*.4};
+      // AI topları ballStart'ın biraz önünde (parkur içinde) spawn olur
+      const offset={x: lvl.ballStart.x + (i+1)*0.6, z: lvl.ballStart.z + (i%2===0?1:-1)*(i+1)*0.45};
       const mesh=createAIBall(offset,cols[i%cols.length]);
       const shd=new THREE.Mesh(new THREE.CircleGeometry(BALL_R*1.2,14),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.28}));
       shd.rotation.x=-Math.PI/2;shd.position.set(offset.x,.002,offset.z);scene.add(shd);
@@ -883,49 +961,895 @@ function hideTurnBanner(){
 }
 
 // ─── KURUCU FONKSİYONLAR ──────────────────────
-function addStars(){
-  const v=[];for(let i=0;i<600;i++) v.push((Math.random()-.5)*200,15+Math.random()*60,(Math.random()-.5)*200);
-  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(v,3));
-  scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:.14,transparent:true,opacity:.55})));
+// ═══════════════════════════════════════════════
+//  DOKU ÜRETİCİLER (canvas tabanlı, hafif)
+// ═══════════════════════════════════════════════
+function makeGrassTexture(c1, c2){
+  const cv = document.createElement('canvas'); cv.width=128; cv.height=128;
+  const ctx = cv.getContext('2d');
+  const C1 = '#'+c1.toString(16).padStart(6,'0');
+  const C2 = '#'+c2.toString(16).padStart(6,'0');
+  ctx.fillStyle = C1; ctx.fillRect(0,0,128,128);
+  // Kareli (checker) mowing-stripe deseni — gerçek mini golf çimi gibi
+  const cell = 16;
+  for (let y=0;y<128;y+=cell){
+    for (let x=0;x<128;x+=cell){
+      const stripe = (Math.floor(x/cell)+Math.floor(y/cell))%2===0;
+      ctx.fillStyle = stripe ? C1 : C2;
+      ctx.fillRect(x,y,cell,cell);
+    }
+  }
+  // İnce gürültü/doku
+  ctx.globalAlpha = 0.05;
+  for(let i=0;i<400;i++){
+    ctx.fillStyle = Math.random()>0.5 ? '#ffffff' : '#000000';
+    ctx.fillRect(Math.random()*128, Math.random()*128, 1, 1);
+  }
+  ctx.globalAlpha = 1;
+  const tex = new THREE.CanvasTexture(cv);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.magFilter = THREE.NearestFilter;
+  return tex;
 }
-function buildFloor(lvl){
-  const{w:fw,d:fd}=lvl.floor,{x:ox,z:oz}=lvl.floorOffset;
-  const mesh=new THREE.Mesh(new THREE.BoxGeometry(fw,.4,fd),new THREE.MeshLambertMaterial({color:lvl.world.floorColor}));
-  mesh.position.set(ox,-.2,oz);mesh.receiveShadow=true;scene.add(mesh);
-  const lm=new THREE.LineBasicMaterial({color:new THREE.Color(lvl.world.floorColor).multiplyScalar(1.3),transparent:true,opacity:.5});
-  for(let xi=-fw/2;xi<=fw/2;xi+=2){const pts=[new THREE.Vector3(ox+xi,.01,oz-fd/2),new THREE.Vector3(ox+xi,.01,oz+fd/2)];scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),lm));}
-  for(let zi=-fd/2;zi<=fd/2;zi+=2){const pts=[new THREE.Vector3(ox-fw/2,.01,oz+zi),new THREE.Vector3(ox+fw/2,.01,oz+zi)];scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),lm));}
-  const b=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.45,restitution:.25})});
-  b.addShape(new CANNON.Box(new CANNON.Vec3(fw/2,.2,fd/2)));b.position.set(ox,-.2,oz);world.addBody(b);
-  levelObjs.push({mesh,body:b});
+
+function makeWoodTexture(c1, c2){
+  const cv = document.createElement('canvas'); cv.width=64; cv.height=64;
+  const ctx = cv.getContext('2d');
+  const C1='#'+c1.toString(16).padStart(6,'0');
+  const C2='#'+c2.toString(16).padStart(6,'0');
+  const grad = ctx.createLinearGradient(0,0,64,0);
+  grad.addColorStop(0,C1); grad.addColorStop(0.5,C2); grad.addColorStop(1,C1);
+  ctx.fillStyle=grad; ctx.fillRect(0,0,64,64);
+  ctx.strokeStyle='rgba(0,0,0,0.15)'; ctx.lineWidth=1;
+  for(let y=4;y<64;y+=7){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(64,y+Math.sin(y)*2); ctx.stroke(); }
+  const tex = new THREE.CanvasTexture(cv);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  return tex;
 }
-function buildBoundaryWalls(lvl){
-  const{w:fw,d:fd}=lvl.floor,{x:ox,z:oz}=lvl.floorOffset;
-  const h=1.1,wm=new CANNON.Material({friction:.1,restitution:.65});
-  const mat=new THREE.MeshLambertMaterial({color:new THREE.Color(lvl.world.floorColor).multiplyScalar(.6)});
-  [{pos:[ox,h/2,oz-fd/2],size:[fw/2,h/2,.2]},{pos:[ox,h/2,oz+fd/2],size:[fw/2,h/2,.2]},
-   {pos:[ox-fw/2,h/2,oz],size:[.2,h/2,fd/2]},{pos:[ox+fw/2,h/2,oz],size:[.2,h/2,fd/2]}]
-  .forEach(d=>{
-    const m=new THREE.Mesh(new THREE.BoxGeometry(d.size[0]*2,d.size[1]*2,d.size[2]*2),mat);
-    m.position.set(...d.pos);m.castShadow=true;scene.add(m);
-    const b=new CANNON.Body({mass:0,material:wm});b.addShape(new CANNON.Box(new CANNON.Vec3(...d.size)));b.position.set(...d.pos);world.addBody(b);
-    levelObjs.push({mesh:m,body:b});
+
+function makeSkyGradientTexture(topHex, botHex){
+  const cv=document.createElement('canvas'); cv.width=2; cv.height=256;
+  const ctx=cv.getContext('2d');
+  const top='#'+topHex.toString(16).padStart(6,'0');
+  const bot='#'+botHex.toString(16).padStart(6,'0');
+  const g=ctx.createLinearGradient(0,0,0,256);
+  g.addColorStop(0,top); g.addColorStop(1,bot);
+  ctx.fillStyle=g; ctx.fillRect(0,0,2,256);
+  const tex=new THREE.CanvasTexture(cv);
+  tex.magFilter=THREE.LinearFilter;
+  return tex;
+}
+
+// ═══════════════════════════════════════════════
+//  GÖKYÜZÜ + BULUTLAR
+// ═══════════════════════════════════════════════
+let skyDome = null, cloudGroup = null;
+function buildSky(world){
+  const skyTex = makeSkyGradientTexture(world.skyTop, world.skyBot);
+  const geo = new THREE.SphereGeometry(110, 24, 16);
+  const mat = new THREE.MeshBasicMaterial({map:skyTex, side:THREE.BackSide, fog:false, depthWrite:false});
+  skyDome = new THREE.Mesh(geo, mat);
+  scene.add(skyDome);
+  levelObjs.push({mesh:skyDome});
+
+  // Bulutlar — basit yumuşak küre kümeleri
+  cloudGroup = new THREE.Group();
+  const cloudMat = new THREE.MeshBasicMaterial({color:0xffffff, transparent:true, opacity:0.85, fog:false});
+  for (let i=0;i<7;i++){
+    const cluster = new THREE.Group();
+    const puffs = 3 + Math.floor(Math.random()*3);
+    for (let j=0;j<puffs;j++){
+      const s = 2.2 + Math.random()*2.2;
+      const puff = new THREE.Mesh(new THREE.SphereGeometry(s, 8, 8), cloudMat);
+      puff.position.set((Math.random()-.5)*5, (Math.random()-.5)*1.2, (Math.random()-.5)*3);
+      cluster.add(puff);
+    }
+    const ang = (i/7) * Math.PI*2;
+    const rad = 55 + Math.random()*30;
+    cluster.position.set(Math.cos(ang)*rad, 22+Math.random()*14, Math.sin(ang)*rad);
+    cluster.userData.driftSpeed = 0.15 + Math.random()*0.2;
+    cloudGroup.add(cluster);
+  }
+  scene.add(cloudGroup);
+  levelObjs.push({mesh:cloudGroup});
+}
+
+// ═══════════════════════════════════════════════
+//  PARKUR YOLU GEOMETRİSİ (path -> shape)
+// ═══════════════════════════════════════════════
+// pathPts üzerinden sağ/sol kenar noktaları hesaplanır, bir THREE.Shape oluşturulur.
+function buildPathGeometry(pathPts, width){
+  const left = [], right = [];
+  for (let i=0;i<pathPts.length;i++){
+    const p = pathPts[i];
+    const prev = pathPts[Math.max(0,i-1)];
+    const next = pathPts[Math.min(pathPts.length-1,i+1)];
+    let dx = next.x - prev.x, dz = next.z - prev.z;
+    const len = Math.hypot(dx,dz) || 1;
+    dx/=len; dz/=len;
+    // normal (perpendicular)
+    const nx = -dz, nz = dx;
+    left.push({x:p.x + nx*width/2, z:p.z + nz*width/2});
+    right.push({x:p.x - nx*width/2, z:p.z - nz*width/2});
+  }
+  return {left, right};
+}
+
+function buildFairwayMesh(lvl){
+  const {left,right} = buildPathGeometry(lvl.pathPts, lvl.pathWidth);
+  const shape = new THREE.Shape();
+  // ShapeGeometry rotateX(-PI/2) maps shape (x,y) -> world (x,-y,?) => use y = -z so world z matches
+  shape.moveTo(left[0].x, -left[0].z);
+  for(let i=1;i<left.length;i++) shape.lineTo(left[i].x, -left[i].z);
+  for(let i=right.length-1;i>=0;i--) shape.lineTo(right[i].x, -right[i].z);
+  shape.closePath();
+
+  const geo = new THREE.ShapeGeometry(shape, 8);
+  geo.rotateX(-Math.PI/2);
+  const grassTex = makeGrassTexture(lvl.world.grass1, lvl.world.grass2);
+  grassTex.repeat.set(lvl.floor.w/2.2, lvl.floor.d/2.2);
+  const mat = new THREE.MeshLambertMaterial({map: grassTex});
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.position.y = 0;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+  levelObjs.push({mesh});
+  return {left,right,shape};
+}
+
+// Çevredeki "off-course" zemin (parkur dışı dekoratif alan — çim/kum/kar vs.)
+
+// ═══════════════════════════════════════════════
+//  AHŞAP KENARLAR (sleeper border) — fiziksel + görsel
+// ═══════════════════════════════════════════════
+function buildWoodenBorder(lvl){
+  const {left, right} = buildPathGeometry(lvl.pathPts, lvl.pathWidth);
+  const woodTex = makeWoodTexture(lvl.world.wood, lvl.world.woodDark);
+  const mat = new THREE.MeshLambertMaterial({map: woodTex});
+  const h = 0.48, th = 0.24;
+  const wallMat = new CANNON.Material({friction:.1, restitution:.65});
+
+  function placeSegmentBorder(pts){
+    for (let i=0;i<pts.length-1;i++){
+      const a = pts[i], b = pts[i+1];
+      const dx = b.x-a.x, dz = b.z-a.z;
+      const len = Math.hypot(dx,dz);
+      if (len < 0.05) continue;
+      const midx = (a.x+b.x)/2, midz=(a.z+b.z)/2;
+      const angle = Math.atan2(dx,dz);
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(th, h, len+0.32), mat);
+      mesh.position.set(midx, h/2, midz);
+      mesh.rotation.y = angle;
+      mesh.castShadow = true; mesh.receiveShadow = true;
+      scene.add(mesh);
+      const body = new CANNON.Body({mass:0, material: wallMat});
+      body.addShape(new CANNON.Box(new CANNON.Vec3(th/2, h/2, (len+0.32)/2)));
+      body.position.set(midx, h/2, midz);
+      body.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0), angle);
+      world.addBody(body);
+      levelObjs.push({mesh, body});
+    }
+  }
+  placeSegmentBorder(left);
+  placeSegmentBorder(right);
+
+  // ── BAŞLANGIÇ ARKA DUVARI ──────────────────────
+  // Başlangıç noktasındaki sol-sağ kenar uçlarını birleştiren ahşap arka duvar
+  function placeEndWall(pL, pR, label){
+    const dx = pR.x-pL.x, dz = pR.z-pL.z;
+    const len = Math.hypot(dx,dz);
+    const midx=(pL.x+pR.x)/2, midz=(pL.z+pR.z)/2;
+    const angle = Math.atan2(dx,dz);
+    const wallH = 0.72;
+    // Görsel — biraz daha yüksek arka panel
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(th*1.1, wallH, len+0.32), mat);
+    mesh.position.set(midx, wallH/2, midz);
+    mesh.rotation.y = angle;
+    mesh.castShadow = true; mesh.receiveShadow = true;
+    scene.add(mesh);
+    // Üst çıta şeridi
+    const strip = new THREE.Mesh(new THREE.BoxGeometry(th*0.6, 0.08, len+0.32),
+      new THREE.MeshLambertMaterial({color: lvl.world.woodDark}));
+    strip.position.set(midx, wallH+0.04, midz);
+    strip.rotation.y = angle;
+    scene.add(strip);
+    // Fizik
+    const body = new CANNON.Body({mass:0, material: wallMat});
+    body.addShape(new CANNON.Box(new CANNON.Vec3(th*0.55, wallH/2, (len+0.32)/2)));
+    body.position.set(midx, wallH/2, midz);
+    body.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0), angle);
+    world.addBody(body);
+    levelObjs.push({mesh, body}, {mesh:strip});
+  }
+  // Başlangıç duvarı (sol[0] → sağ[0])
+  placeEndWall(left[0], right[0], 'start');
+  // Bitiş duvarı (sol[son] → sağ[son])
+  placeEndWall(left[left.length-1], right[right.length-1], 'end');
+
+  // Köşe direkleri
+  const postMat = new THREE.MeshLambertMaterial({color: lvl.world.woodDark});
+  [left[0], right[0], left[left.length-1], right[right.length-1]].forEach(p=>{
+    const post = new THREE.Mesh(new THREE.CylinderGeometry(0.15,0.15,h+0.28,8), postMat);
+    post.position.set(p.x, (h+0.28)/2, p.z);
+    post.castShadow = true;
+    scene.add(post);
+    levelObjs.push({mesh:post});
   });
 }
-function addWall(w,color){
-  const mesh=new THREE.Mesh(new THREE.BoxGeometry(w.w,w.h,w.d),new THREE.MeshLambertMaterial({color}));
-  mesh.position.set(w.x,w.h/2,w.z);mesh.castShadow=true;scene.add(mesh);
-  const b=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.1,restitution:.6})});
-  b.addShape(new CANNON.Box(new CANNON.Vec3(w.w/2,w.h/2,w.d/2)));b.position.set(w.x,w.h/2,w.z);world.addBody(b);
-  levelObjs.push({mesh,body:b});
+
+// ═══════════════════════════════════════════════
+//  ZEMİN FİZİK GÖVDESİ
+// ═══════════════════════════════════════════════
+function buildFloorPhysics(lvl){
+  // Path'in tüm alanını kapsayan büyük yassı fizik zemini
+  const {w:fw, d:fd} = lvl.floor;
+  // Bounding box'ı pathPts'den hesapla
+  let minX=Infinity,maxX=-Infinity,minZ=Infinity,maxZ=-Infinity;
+  lvl.pathPts.forEach(p=>{ minX=Math.min(minX,p.x);maxX=Math.max(maxX,p.x);minZ=Math.min(minZ,p.z);maxZ=Math.max(maxZ,p.z); });
+  const pw = maxX-minX + lvl.pathWidth*2 + 6;
+  const pd = maxZ-minZ + lvl.pathWidth*2 + 6;
+  const cx = (minX+maxX)/2, cz = (minZ+maxZ)/2;
+  const b = new CANNON.Body({mass:0, material:new CANNON.Material({friction:.44, restitution:.24})});
+  b.addShape(new CANNON.Box(new CANNON.Vec3(Math.max(pw/2, fw/2+4), .15, Math.max(pd/2, fd/2+4))));
+  b.position.set(cx, -.15, cz);
+  world.addBody(b);
+  levelObjs.push({body:b});
 }
-function addObstacle(o,color){
-  const mesh=new THREE.Mesh(new THREE.CylinderGeometry(o.r,o.r,1.1,16),new THREE.MeshLambertMaterial({color}));
-  mesh.position.set(o.x,.55,o.z);mesh.castShadow=true;scene.add(mesh);
-  const b=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.1,restitution:.7})});
-  b.addShape(new CANNON.Cylinder(o.r,o.r,1.1,12));b.position.set(o.x,.55,o.z);world.addBody(b);
-  levelObjs.push({mesh,body:b});
+
+// ═══════════════════════════════════════════════
+//  TEMA DEKORLARI (kayalar, palmiyeler, şelaleler vb.)
+// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+//  DÖNEN/HAREKETLİ ENGEL KAYIT LİSTESİ
+// ═══════════════════════════════════════════════
+let animatedObstacles = []; // {update(dt)} fonksiyonu olan nesneler
+
+// ═══════════════════════════════════════════════
+//  3D ARKAPLAN OBJELERİ (parkur etrafı)
+// ═══════════════════════════════════════════════
+
+function addRockCluster(cx, cz, count, scale, color){
+  const rngL = seededRand(Math.floor(cx*100+cz*137));
+  for(let i=0;i<count;i++){
+    const rx = cx + (rngL()-.5)*scale*2.5;
+    const rz = cz + (rngL()-.5)*scale*1.8;
+    const rs = scale*(0.4+rngL()*0.8);
+    const geo = new THREE.DodecahedronGeometry(rs, 0);
+    const mat = new THREE.MeshLambertMaterial({color});
+    const m = new THREE.Mesh(geo, mat);
+    m.position.set(rx, rs*0.6, rz);
+    m.rotation.set(rngL()*Math.PI, rngL()*Math.PI, rngL()*Math.PI);
+    m.castShadow = true; m.receiveShadow = true;
+    scene.add(m); levelObjs.push({mesh:m});
+  }
 }
+
+function addDetailedPineTree(x, z, h=1){
+  const g = new THREE.Group();
+  const trunkH = 0.7*h;
+  const trunk = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.09*h, 0.14*h, trunkH, 7),
+    new THREE.MeshLambertMaterial({color:0x5a3a1a})
+  );
+  trunk.position.y = trunkH/2; trunk.castShadow=true; g.add(trunk);
+  const layers = 3 + Math.floor(h);
+  for(let i=0;i<layers;i++){
+    const t = i/layers;
+    const r = (0.9-t*0.45)*h;
+    const cone = new THREE.Mesh(
+      new THREE.ConeGeometry(r, r*1.3, 8),
+      new THREE.MeshLambertMaterial({color: i%2===0?0x267a33:0x1f6829})
+    );
+    cone.position.y = trunkH*0.7 + i*r*0.85;
+    cone.castShadow=true; g.add(cone);
+  }
+  g.position.set(x,0,z); scene.add(g); levelObjs.push({mesh:g});
+}
+
+function addDetailedPalmTree(x, z){
+  const g = new THREE.Group();
+  const trunk = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.1,0.16,2.8,7),
+    new THREE.MeshLambertMaterial({color:0x9a7040})
+  );
+  trunk.position.y=1.4; trunk.rotation.z=(Math.random()-.5)*0.25; trunk.castShadow=true; g.add(trunk);
+  // Coconuts
+  for(let i=0;i<3;i++){
+    const nut = new THREE.Mesh(new THREE.SphereGeometry(0.14,6,5), new THREE.MeshLambertMaterial({color:0x5a3a10}));
+    nut.position.set(Math.cos(i*2.1)*0.2, 2.6, Math.sin(i*2.1)*0.2); g.add(nut);
+  }
+  // Leaves
+  for(let i=0;i<7;i++){
+    const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.12,1.8,4), new THREE.MeshLambertMaterial({color:0x3dba50}));
+    leaf.position.set(0,2.8,0); leaf.rotation.z=Math.PI/2.2; leaf.rotation.y=(i/7)*Math.PI*2;
+    leaf.translateZ(0.7); leaf.castShadow=true; g.add(leaf);
+  }
+  g.position.set(x,0,z); scene.add(g); levelObjs.push({mesh:g});
+}
+
+function addBush(x, z, color=0x2a8a3a){
+  const g = new THREE.Group();
+  const puffs = 2+Math.floor(Math.random()*3);
+  for(let i=0;i<puffs;i++){
+    const s=0.3+Math.random()*0.35;
+    const m = new THREE.Mesh(new THREE.SphereGeometry(s,7,6), new THREE.MeshLambertMaterial({color}));
+    m.position.set((Math.random()-.5)*0.6, s*0.7, (Math.random()-.5)*0.5);
+    m.castShadow=true; g.add(m);
+  }
+  g.position.set(x,0,z); scene.add(g); levelObjs.push({mesh:g});
+}
+
+function addWoodFence(x, z, angle, length){
+  const g = new THREE.Group();
+  const posts = Math.ceil(length/0.9)+1;
+  const postMat = new THREE.MeshLambertMaterial({color:0x8a6535});
+  const railMat = new THREE.MeshLambertMaterial({color:0xaa8040});
+  for(let i=0;i<posts;i++){
+    const px = (i/(posts-1)-0.5)*length;
+    const post = new THREE.Mesh(new THREE.BoxGeometry(0.1,0.65,0.1), postMat);
+    post.position.set(px, 0.32, 0); post.castShadow=true; g.add(post);
+  }
+  for(let r=0;r<2;r++){
+    const rail = new THREE.Mesh(new THREE.BoxGeometry(length, 0.07, 0.06), railMat);
+    rail.position.set(0, 0.18+r*0.22, 0); g.add(rail);
+  }
+  g.position.set(x,0,z); g.rotation.y=angle; scene.add(g); levelObjs.push({mesh:g});
+}
+
+function addPond(x, z, rx, rz){
+  // Gölet — dekoratif su yüzeyi
+  const geo = new THREE.EllipseCurve(0,0,rx,rz,0,Math.PI*2,false,0);
+  const pts = geo.getPoints(24);
+  const shape = new THREE.Shape(pts);
+  const sgeo = new THREE.ShapeGeometry(shape);
+  sgeo.rotateX(-Math.PI/2);
+  const m = new THREE.Mesh(sgeo, new THREE.MeshPhongMaterial({color:0x4a9ac8, transparent:true, opacity:0.82, shininess:120}));
+  m.position.set(x, 0.02, z);
+  scene.add(m); levelObjs.push({mesh:m});
+  // Su yüzeyinde hafif ışık yansıması
+  const glow = new THREE.PointLight(0x88ccff, 0.4, 5);
+  glow.position.set(x,0.5,z); scene.add(glow); levelObjs.push({mesh:glow});
+}
+
+function addFlowerPatch(cx, cz, count){
+  const colors = [0xff4466,0xffcc00,0xff8800,0xcc44ff,0xff4488,0xffffff];
+  for(let i=0;i<count;i++){
+    const x=cx+(Math.random()-.5)*2.5, z=cz+(Math.random()-.5)*2;
+    // Stem
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.03,0.03,0.4,4), new THREE.MeshLambertMaterial({color:0x3a9a3a}));
+    stem.position.set(x,0.2,z); scene.add(stem); levelObjs.push({mesh:stem});
+    // Flower head
+    const fl = new THREE.Mesh(new THREE.SphereGeometry(0.12,6,5), new THREE.MeshLambertMaterial({color:colors[Math.floor(Math.random()*colors.length)]}));
+    fl.position.set(x,0.46,z); scene.add(fl); levelObjs.push({mesh:fl});
+  }
+}
+
+function addMushroom(x,z){
+  const g = new THREE.Group();
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.1,0.13,0.5,8), new THREE.MeshLambertMaterial({color:0xffe0c0}));
+  stem.position.y=0.25; g.add(stem);
+  const cap = new THREE.Mesh(new THREE.SphereGeometry(0.32,8,6,0,Math.PI*2,0,Math.PI*0.55), new THREE.MeshLambertMaterial({color:0xdd3322}));
+  cap.position.y=0.5; cap.scale.y=0.65; g.add(cap);
+  // Spots
+  for(let i=0;i<4;i++){
+    const spot = new THREE.Mesh(new THREE.CircleGeometry(0.06,6), new THREE.MeshBasicMaterial({color:0xffffff}));
+    spot.position.set(Math.cos(i*1.6)*0.2, 0.52, Math.sin(i*1.6)*0.2);
+    spot.rotation.x=-Math.PI/2.5; g.add(spot);
+  }
+  g.position.set(x,0,z); scene.add(g); levelObjs.push({mesh:g});
+}
+
+function addCactus(x,z){
+  const g=new THREE.Group();
+  const mat=new THREE.MeshLambertMaterial({color:0x3a8a3a});
+  const body=new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.22,1.2,8),mat);
+  body.position.y=0.6; body.castShadow=true; g.add(body);
+  const top=new THREE.Mesh(new THREE.SphereGeometry(0.2,8,6),mat);
+  top.position.y=1.26; g.add(top);
+  // Arms
+  for(let s=0;s<2;s++){
+    const sx=s===0?.22:-.22;
+    const arm=new THREE.Mesh(new THREE.CylinderGeometry(0.1,0.12,0.6,6),mat);
+    arm.position.set(sx,0.7,0); arm.rotation.z=Math.PI/2; arm.castShadow=true; g.add(arm);
+    const armTop=new THREE.Mesh(new THREE.CylinderGeometry(0.1,0.1,0.35,6),mat);
+    armTop.position.set(sx>0?sx+0.3:sx-0.3,0.85,0); armTop.castShadow=true; g.add(armTop);
+    const c=new THREE.Mesh(new THREE.SphereGeometry(0.1,6,5),mat); c.position.copy(armTop.position); c.position.y+=0.22; g.add(c);
+  }
+  g.position.set(x,0,z); scene.add(g); levelObjs.push({mesh:g});
+}
+
+function addIceBlock(x,z){
+  const m=new THREE.Mesh(new THREE.BoxGeometry(0.7+Math.random()*0.5,0.5+Math.random()*0.6,0.5+Math.random()*0.4),
+    new THREE.MeshPhongMaterial({color:0xb8eeff,transparent:true,opacity:0.75,shininess:200}));
+  m.position.set(x,0.4,z); m.rotation.y=Math.random()*Math.PI; m.castShadow=true; scene.add(m); levelObjs.push({mesh:m});
+}
+
+function addLampPost(x,z){
+  const g=new THREE.Group();
+  const pole=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.07,2.4,6),new THREE.MeshLambertMaterial({color:0x444455}));
+  pole.position.y=1.2; pole.castShadow=true; g.add(pole);
+  const head=new THREE.Mesh(new THREE.SphereGeometry(0.2,8,6),new THREE.MeshBasicMaterial({color:0xffee88}));
+  head.position.y=2.5; g.add(head);
+  const light=new THREE.PointLight(0xffee88,0.8,7);
+  light.position.y=2.5; g.add(light);
+  g.position.set(x,0,z); scene.add(g); levelObjs.push({mesh:g});
+}
+
+function buildSurroundGround(lvl){
+  // Çok büyük zemin plane — kamerayla hareket edince kenarsız görünür
+  const size = 600;
+  const grassTex = makeGrassTexture(
+    blendColor(lvl.world.grass1, 0x000000, 0.25),
+    blendColor(lvl.world.grass2, 0x000000, 0.25)
+  );
+  grassTex.repeat.set(size / 3.5, size / 3.5);
+  const mat = new THREE.MeshLambertMaterial({ map: grassTex });
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size, size, 1, 1), mat);
+  mesh.rotation.x = -Math.PI / 2;
+  mesh.position.y = -0.018;
+  mesh.receiveShadow = true;
+  mesh.userData.followCamera = true; // gameLoop'ta kamerayla kayar
+  scene.add(mesh);
+  levelObjs.push({ mesh });
+
+  // Sahne arkaplanı + clear color = çim rengi (beyaz kenar oluşmaz)
+  const grassCol = new THREE.Color(lvl.world.grass2).multiplyScalar(0.78);
+  scene.background = grassCol;
+  renderer.setClearColor(grassCol, 1);
+
+  // Parkur çevresine 3D objeler
+  populateSurroundings(lvl, lvl.floor.w + 40, lvl.floor.d + 40);
+}
+
+function blendColor(c, target, t){
+  const r1=(c>>16)&0xff, g1=(c>>8)&0xff, b1=c&0xff;
+  const r2=(target>>16)&0xff, g2=(target>>8)&0xff, b2=target&0xff;
+  return ((Math.round(r1+(r2-r1)*t)<<16)|(Math.round(g1+(g2-g1)*t)<<8)|Math.round(b1+(b2-b1)*t));
+}
+
+function populateSurroundings(lvl, fw, fd){
+  const rng = seededRand(lvl.n * 314159 + 2718);
+  const {decor} = lvl.world;
+  const halfW=fw/2, halfD=fd/2;
+  const coreW=lvl.floor.w/2, coreD=lvl.floor.d/2;
+
+  function spawnAround(count, spawnFn){
+    for(let i=0;i<count;i++){
+      // Parkur çekirdeğinin dışında ama görünür alanda
+      let x,z,tries=0;
+      do {
+        x=(rng()-.5)*fw*0.88; z=(rng()-.5)*fd*0.88; tries++;
+        // Parkur şeridinin dışında mı? Basit kontrol: core alanın dışı veya kenarda
+        const outOfCore = Math.abs(x)>coreW+1.5 || Math.abs(z)>coreD+1.5;
+        if(outOfCore || tries>8) break;
+      } while(tries<8);
+      spawnFn(x,z,rng);
+    }
+  }
+
+  switch(decor){
+    case 'meadow':
+      spawnAround(12, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.3) addDetailedPineTree(x,z,0.8+r()*0.7);
+        else if(roll<0.55) addRockCluster(x,z,2+Math.floor(r()*3),0.5+r()*0.4,0x8a9080);
+        else if(roll<0.7) addBush(x,z,0x2a7a35);
+        else if(roll<0.82) addFlowerPatch(x,z,4+Math.floor(r()*5));
+        else addWoodFence(x,z,r()*Math.PI,1.5+r()*2);
+      });
+      // Pond in a corner
+      if(rng()>0.4) addPond((rng()-.5)*fw*0.55, (rng()-.5)*fd*0.55, 2+rng()*1.5, 1.2+rng());
+      break;
+    case 'desert':
+      spawnAround(14, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.45) addCactus(x,z);
+        else if(roll<0.7) addRockCluster(x,z,2+Math.floor(r()*3),0.6+r()*0.5,0xb89050);
+        else addRockCluster(x,z,1,1.0+r()*0.8,0xcc9955);
+      });
+      break;
+    case 'arctic':
+      spawnAround(13, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.4) addIceBlock(x,z);
+        else if(roll<0.65) addRockCluster(x,z,2+Math.floor(r()*3),0.5+r()*0.5,0xd8ecf5);
+        else addDetailedPineTree(x,z,0.7+r()*0.5);
+      });
+      break;
+    case 'tropical':
+      spawnAround(14, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.35) addDetailedPalmTree(x,z);
+        else if(roll<0.55) addBush(x,z,0x26a035);
+        else if(roll<0.7) addFlowerPatch(x,z,5+Math.floor(r()*5));
+        else addRockCluster(x,z,2,0.5+r()*0.4,0x7a9a80);
+      });
+      if(rng()>0.3) addPond((rng()-.5)*fw*0.5, (rng()-.5)*fd*0.5, 2.5+rng()*1.5, 1.5+rng());
+      break;
+    case 'forest':
+      spawnAround(16, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.5) addDetailedPineTree(x,z,0.9+r()*1.2);
+        else if(roll<0.7) addBush(x,z,0x1f6a28);
+        else if(roll<0.85) addMushroom(x,z);
+        else addRockCluster(x,z,2,0.4+r()*0.4,0x7a8a70);
+      });
+      break;
+    case 'night':
+      spawnAround(13, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.35) addLampPost(x,z);
+        else if(roll<0.6) addCrystalSpike(x,z,r()>0.5?0x8844cc:0xcc44ff);
+        else addRockCluster(x,z,2,0.5+r()*0.4,0x333355);
+      });
+      break;
+    case 'candy':
+      spawnAround(14, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.4) addCandySwirl(x,z);
+        else if(roll<0.65) addMushroom(x,z);
+        else addFlowerPatch(x,z,6+Math.floor(r()*5));
+      });
+      break;
+    case 'crystal':
+      spawnAround(14, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.5) addCrystalSpike(x,z, r()>0.5?0x80c0ff:0xbfe0ff);
+        else addRockCluster(x,z,2+Math.floor(r()*3),0.5+r()*0.5,0x406080);
+      });
+      break;
+    case 'lava':
+      spawnAround(13, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.4) addLavaPool(x,z,0.7+r()*1.0);
+        else if(roll<0.65) addRockCluster(x,z,2+Math.floor(r()*3),0.6+r()*0.5,0x2a1510);
+        else addCrystalSpike(x,z,r()>0.5?0xff4400:0xff8800);
+      });
+      break;
+    case 'space':
+      spawnAround(12, (x,z,r)=>{
+        const roll=r();
+        if(roll<0.4) addCrystalSpike(x,z,r()>0.5?0x00ffcc:0x88aaff);
+        else if(roll<0.65) addRockCluster(x,z,2,0.5+r()*0.6,0x202040);
+        else addLampPost(x,z); // uzay lambası
+      });
+      break;
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  EĞLENCELİ PARKUR İÇİ ENGELLER
+// ═══════════════════════════════════════════════
+
+// 1) DÖNEN FAN ENGELİ — yavaş dönen iki kollu bariyer
+function addSpinnerObstacle(x, z, speed=1.2, color=0xe05020){
+  const pivot = new THREE.Group();
+  pivot.position.set(x, 0.45, z);
+  // İki kol
+  for(let s=0;s<2;s++){
+    const arm = new THREE.Mesh(
+      new THREE.BoxGeometry(0.25, 0.35, 1.6),
+      new THREE.MeshLambertMaterial({color})
+    );
+    arm.position.set(0,0, s===0?0.8:-0.8);
+    arm.castShadow=true; pivot.add(arm);
+    // Uç topu
+    const end = new THREE.Mesh(new THREE.SphereGeometry(0.2,8,6), new THREE.MeshLambertMaterial({color:0xffd700}));
+    end.position.set(0,0, s===0?1.7:-1.7); pivot.add(end);
+  }
+  // Merkez silindir
+  const center = new THREE.Mesh(new THREE.CylinderGeometry(0.18,0.18,0.5,10), new THREE.MeshLambertMaterial({color:0x555555}));
+  pivot.add(center);
+  scene.add(pivot); levelObjs.push({mesh:pivot});
+
+  // Fizik: sadece mevcut açıya göre güncellenen iki kol fizik gövdesi
+  const bodies=[];
+  for(let s=0;s<2;s++){
+    const b=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.05,restitution:.8})});
+    b.addShape(new CANNON.Box(new CANNON.Vec3(0.125,0.175,0.8)));
+    world.addBody(b); bodies.push(b); levelObjs.push({body:b});
+  }
+
+  let angle=0;
+  animatedObstacles.push({
+    update(dt){
+      angle += speed * dt;
+      pivot.rotation.y = angle;
+      bodies.forEach((b,s)=>{
+        const dir = angle + (s===0?0:Math.PI);
+        b.position.set(x + Math.sin(dir)*0.8, 0.45, z + Math.cos(dir)*0.8);
+        b.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0), dir);
+      });
+    }
+  });
+}
+
+// 2) SARKAÇ ENGELİ — soldan sağa salınan yatay levye
+function addPendulumObstacle(x, z, worldAngle=0, amplitude=1.1, freq=1.4){
+  const pivot = new THREE.Group();
+  pivot.position.set(x, 1.2, z);
+  pivot.rotation.y = worldAngle;
+  const rod = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.06,0.06,1.0,6),
+    new THREE.MeshLambertMaterial({color:0x888888})
+  );
+  rod.position.y=-0.5; rod.castShadow=true; pivot.add(rod);
+  const bar = new THREE.Mesh(
+    new THREE.BoxGeometry(2.4, 0.22, 0.22),
+    new THREE.MeshLambertMaterial({color:0xdd4422})
+  );
+  bar.position.y=-1.05; bar.castShadow=true; pivot.add(bar);
+  // Uç topları
+  [-1.2,1.2].forEach(bx=>{
+    const ball=new THREE.Mesh(new THREE.SphereGeometry(0.17,8,6),new THREE.MeshLambertMaterial({color:0xff8800}));
+    ball.position.set(bx,-1.05,0); pivot.add(ball);
+  });
+  scene.add(pivot); levelObjs.push({mesh:pivot});
+
+  const body=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.05,restitution:.85})});
+  body.addShape(new CANNON.Box(new CANNON.Vec3(1.2,0.11,0.11)));
+  world.addBody(body); levelObjs.push({body});
+
+  let t=0;
+  animatedObstacles.push({
+    update(dt){
+      t+=dt;
+      const swingAngle = Math.sin(t*freq)*amplitude;
+      pivot.rotation.z = swingAngle;
+      // fizik gövdesi konumu
+      const localY = -1.05;
+      const worldX = x + Math.sin(swingAngle)*Math.abs(localY);
+      const worldY = 1.2 + Math.cos(swingAngle)*localY;
+      body.position.set(worldX, worldY, z);
+      // Yatay barın doğru açısını ver
+      const qWorld = new CANNON.Quaternion();
+      qWorld.setFromAxisAngle(new CANNON.Vec3(0,0,1), swingAngle+Math.PI);
+      const qHoriz = new CANNON.Quaternion();
+      qHoriz.setFromAxisAngle(new CANNON.Vec3(0,1,0), worldAngle);
+      body.quaternion = qHoriz.mult(qWorld);
+    }
+  });
+}
+
+// 3) TAMPON TOPLAR — yay gibi sıçratan renkli tümsekler
+function addBumper(x, z, color=0xff2255){
+  const mesh=new THREE.Mesh(
+    new THREE.CylinderGeometry(0.38,0.38,0.55,16),
+    new THREE.MeshPhongMaterial({color,shininess:150,emissive:color,emissiveIntensity:0.15})
+  );
+  mesh.position.set(x,0.28,z); mesh.castShadow=true; scene.add(mesh);
+  // Üst disk
+  const top=new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.42,0.08,16),new THREE.MeshPhongMaterial({color:0xffd700,shininess:200}));
+  top.position.set(x,0.52,z); scene.add(top);
+  const body=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.02,restitution:1.35})});
+  body.addShape(new CANNON.Cylinder(0.38,0.38,0.55,12));
+  body.position.set(x,0.28,z); world.addBody(body);
+  levelObjs.push({mesh,body},{mesh:top});
+
+  // Işıltılı efekt: kısa pulse animasyonu (çarpınca değil, sürekli blink)
+  let t2=Math.random()*Math.PI*2;
+  animatedObstacles.push({
+    update(dt){
+      t2+=dt*2.5;
+      mesh.material.emissiveIntensity=0.08+Math.sin(t2)*0.08;
+    }
+  });
+}
+
+// 4) DAR GEÇİT DİREKLERİ — arasından geçmek zorunda
+function addGateObstacle(x, z, gapWidth=1.1, color=0xffaa00){
+  const postH=0.75, postW=0.22;
+  const colors=[color,0xff4400];
+  // Sol direk
+  for(let s=0;s<2;s++){
+    const side=s===0?-1:1;
+    const mPos=gapWidth/2+postW/2;
+    const post=new THREE.Mesh(new THREE.BoxGeometry(postW,postH,postW), new THREE.MeshLambertMaterial({color:colors[s]}));
+    post.position.set(x,postH/2,z+side*mPos); post.castShadow=true; scene.add(post);
+    const body=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.1,restitution:.6})});
+    body.addShape(new CANNON.Box(new CANNON.Vec3(postW/2,postH/2,postW/2)));
+    body.position.set(x,postH/2,z+side*mPos); world.addBody(body);
+    levelObjs.push({mesh:post,body});
+    // Şerit üst çubuğu
+    const bar=new THREE.Mesh(new THREE.BoxGeometry(postW*0.6,0.06,gapWidth+postW*2),
+      new THREE.MeshLambertMaterial({color:s===0?0xffaa00:0xff4400}));
+    bar.position.set(x,postH+0.03,z); scene.add(bar); levelObjs.push({mesh:bar});
+  }
+}
+
+// 5) ZIPLAYAN RAMPA — topun üstünden yuvarlanınca hava almasını sağlar (bump)
+function addRamp(x, z, angle=0, length=1.8, rise=0.28){
+  const g=new THREE.Group();
+  const rampMesh=new THREE.Mesh(
+    new THREE.BoxGeometry(length,0.18,1.0),
+    new THREE.MeshLambertMaterial({color:0xff9933})
+  );
+  rampMesh.position.set(0,rise/2,0);
+  rampMesh.rotation.z=-Math.atan2(rise,length);
+  rampMesh.castShadow=true; rampMesh.receiveShadow=true;
+  g.add(rampMesh);
+  // Yan paneller
+  for(let s=0;s<2;s++){
+    const side=new THREE.Mesh(new THREE.BoxGeometry(length,rise,0.08),new THREE.MeshLambertMaterial({color:0xcc6600}));
+    side.position.set(0,rise/2,(s===0?0.5:-0.5));
+    side.rotation.z=rampMesh.rotation.z; side.castShadow=true; g.add(side);
+  }
+  g.position.set(x,0,z); g.rotation.y=angle; scene.add(g); levelObjs.push({mesh:g});
+
+  // Fizik — eğimli kutu
+  const b=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.3,restitution:.4})});
+  b.addShape(new CANNON.Box(new CANNON.Vec3(length/2,0.09,0.5)));
+  b.position.set(x,rise/2,z);
+  b.quaternion.setFromEuler(-Math.atan2(rise,length), angle, 0);
+  world.addBody(b); levelObjs.push({body:b});
+}
+
+// 6) HIZLANDIRICI PAD — topla temas anında hız verir (fizik gövdesi restitution ile)
+function addSpeedPad(x, z){
+  const mesh=new THREE.Mesh(
+    new THREE.BoxGeometry(0.9,0.06,1.4),
+    new THREE.MeshPhongMaterial({color:0x00ddff,shininess:180,transparent:true,opacity:0.85})
+  );
+  mesh.position.set(x,0.03,z); scene.add(mesh); levelObjs.push({mesh});
+  // Ok işareti çizgisi
+  const arrow=new THREE.Mesh(new THREE.ConeGeometry(0.15,0.4,4),new THREE.MeshBasicMaterial({color:0x00ffee}));
+  arrow.rotation.x=Math.PI/2; arrow.position.set(x,0.07,z); scene.add(arrow); levelObjs.push({mesh:arrow});
+  // Yüksek restitution => hızlandırır
+  const b=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.01,restitution:.02})});
+  b.addShape(new CANNON.Box(new CANNON.Vec3(0.45,0.03,0.7)));
+  b.position.set(x,0.03,z); world.addBody(b); levelObjs.push({body:b});
+}
+
+// ═══════════════════════════════════════════════
+//  LEVEL DEKORATİF OBJELERİ + ENGEL YERLEŞİMİ
+// ═══════════════════════════════════════════════
+function decorateLevel(lvl){
+  const rng = seededRand(lvl.n*999331);
+  addTeeMarker(lvl.ballStart, lvl.world);
+
+  // Parkur içi engelleri path noktaları üzerine yerleştir
+  placePathObstacles(lvl, rng);
+}
+
+function placePathObstacles(lvl, rng){
+  const pts = lvl.pathPts;
+  const diff = lvl.difficulty || 0;
+  const obsColor = lvl.world.obstColor;
+
+  if(pts.length < 4) return;
+
+  // Engel havuzu: zorlukla açılır
+  // Her segment için olası engel tipini belirle
+  const midPts = pts.slice(1, pts.length-1); // başlangıç ve bitiş hariç
+
+  // Kaç engel: zorlukla doğrusal artar
+  const obstacleCount = Math.floor(diff * midPts.length * 0.65);
+
+  // Engel tiplerinin ağırlıkları zorlukla değişir
+  // Kolay: sadece statik bump+gate, orta: spinner+bumper, zor: pendulum+tüm
+  function pickObstacleType(){
+    const r = rng();
+    if(diff < 0.2){
+      return r<0.5?'gate':'bumper';
+    } else if(diff < 0.45){
+      if(r<0.25) return 'gate';
+      if(r<0.5)  return 'bumper';
+      if(r<0.75) return 'spinner';
+      return 'ramp';
+    } else if(diff < 0.72){
+      if(r<0.22) return 'gate';
+      if(r<0.4)  return 'bumper';
+      if(r<0.62) return 'spinner';
+      if(r<0.8)  return 'pendulum';
+      return 'ramp';
+    } else {
+      if(r<0.18) return 'gate';
+      if(r<0.35) return 'bumper';
+      if(r<0.52) return 'spinner';
+      if(r<0.7)  return 'pendulum';
+      if(r<0.84) return 'speedpad';
+      return 'ramp';
+    }
+  }
+
+  // Hangi ara segmentlere engel konacağını seç (başlangıca çok yakın koyma)
+  const usedSegs = new Set();
+  for(let i=0; i<obstacleCount; i++){
+    // En az 1 segment aralıklı koy
+    let segIdx;
+    let tries=0;
+    do {
+      segIdx = 1 + Math.floor(rng() * (pts.length-2));
+      tries++;
+    } while(usedSegs.has(segIdx) && tries<20);
+    if(usedSegs.has(segIdx)) continue;
+    usedSegs.add(segIdx);
+    if(segIdx>0) usedSegs.add(segIdx-1); // komşuya da koyma
+
+    const p = pts[segIdx];
+    // Yol yönünü bul (engeli yola dik veya boydan yerleştirmek için)
+    const prev = pts[segIdx-1]||pts[segIdx];
+    const next = pts[Math.min(segIdx+1,pts.length-1)];
+    const pathAngle = Math.atan2(next.x-prev.x, next.z-prev.z);
+    const perpAngle = pathAngle + Math.PI/2;
+
+    const type = pickObstacleType();
+    const ox = p.x + Math.sin(perpAngle)*(rng()-.5)*lvl.pathWidth*0.25;
+    const oz = p.z + Math.cos(perpAngle)*(rng()-.5)*lvl.pathWidth*0.25;
+
+    switch(type){
+      case 'spinner':
+        addSpinnerObstacle(ox, oz, 0.8+rng()*1.6, obsColor);
+        break;
+      case 'pendulum':
+        addPendulumObstacle(ox, oz, pathAngle, 0.7+rng()*0.8, 1.0+rng()*0.8);
+        break;
+      case 'bumper':
+        addBumper(ox, oz, [0xff2255,0xff8800,0x8800ff,0x00ccff][Math.floor(rng()*4)]);
+        // Bazen ikili bumper
+        if(rng()>0.5 && lvl.pathWidth>2.2){
+          addBumper(p.x+Math.sin(perpAngle)*lvl.pathWidth*0.3, p.z+Math.cos(perpAngle)*lvl.pathWidth*0.3, 0xffaa00);
+        }
+        break;
+      case 'gate':
+        const gapW = lvl.pathWidth * (0.38+rng()*0.22);
+        addGateObstacle(ox, oz, gapW, obsColor);
+        break;
+      case 'ramp':
+        addRamp(ox, oz, pathAngle, 1.4+rng()*0.8, 0.18+rng()*0.18);
+        break;
+      case 'speedpad':
+        addSpeedPad(ox, oz);
+        break;
+    }
+  }
+
+  // Statik ahşap duvar engeller (lvl.walls) — tema renginde
+  lvl.walls.forEach(w => {
+    const woodTex = makeWoodTexture(lvl.world.wood, lvl.world.woodDark);
+    const mesh=new THREE.Mesh(new THREE.BoxGeometry(w.w,w.h,w.d),new THREE.MeshLambertMaterial({map:woodTex}));
+    mesh.position.set(w.x,w.h/2,w.z);mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
+    const b=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.1,restitution:.62})});
+    b.addShape(new CANNON.Box(new CANNON.Vec3(w.w/2,w.h/2,w.d/2)));b.position.set(w.x,w.h/2,w.z);world.addBody(b);
+    levelObjs.push({mesh,body:b});
+  });
+
+  // Silindir engeller — tema rengiyle
+  lvl.obstacles.forEach(o => {
+    const mesh=new THREE.Mesh(new THREE.CylinderGeometry(o.r,o.r,0.9,16),new THREE.MeshLambertMaterial({color:lvl.world.obstColor}));
+    mesh.position.set(o.x,.45,o.z);mesh.castShadow=true;scene.add(mesh);
+    const b=new CANNON.Body({mass:0,material:new CANNON.Material({friction:.1,restitution:.75})});
+    b.addShape(new CANNON.Cylinder(o.r,o.r,0.9,12));b.position.set(o.x,.45,o.z);world.addBody(b);
+    levelObjs.push({mesh,body:b});
+  });
+}
+
+function addTeeMarker(pos, world){
+  const ring = new THREE.Mesh(new THREE.RingGeometry(0.5,0.62,24), new THREE.MeshBasicMaterial({color:0xffffff, transparent:true, opacity:0.55, side:THREE.DoubleSide}));
+  ring.rotation.x=-Math.PI/2; ring.position.set(pos.x,0.008,pos.z);
+  scene.add(ring); levelObjs.push({mesh:ring});
+}
+
+// ═══════════════════════════════════════════════
+//  ESKİ FONKSİYONLAR — uyumluluk için korunuyor
+// ═══════════════════════════════════════════════
+function addStars(){
+  // Artık gerçek gökyüzü kullanılıyor; yıldız parçacıkları sadece uzay temasında.
+}
+
+function buildFloor(lvl){
+  buildSky(lvl.world);
+  buildSurroundGround(lvl);
+  buildFairwayMesh(lvl);
+  buildFloorPhysics(lvl);
+  decorateLevel(lvl);
+}
+
+function buildBoundaryWalls(lvl){
+  buildWoodenBorder(lvl);
+}
+
+// addWall ve addObstacle artık placePathObstacles içinde inline kullanılıyor
 function addHole(pos){
   holeMesh=new THREE.Mesh(new THREE.CircleGeometry(HOLE_R,32),new THREE.MeshBasicMaterial({color:0x040404}));
   holeMesh.rotation.x=-Math.PI/2;holeMesh.position.set(pos.x,.006,pos.z);scene.add(holeMesh);
@@ -935,7 +1859,11 @@ function addHole(pos){
   flagMesh=pole;pole.position.set(pos.x,1.2,pos.z);scene.add(pole);
   const flag=new THREE.Mesh(new THREE.PlaneGeometry(.55,.32),new THREE.MeshLambertMaterial({color:0xff2222,side:THREE.DoubleSide}));
   flag.position.set(pos.x+.3,2.18,pos.z);scene.add(flag);
-  levelObjs.push({mesh:rim},{mesh:flag});
+  // Delik gölgesi/derinlik efekti
+  const cup = new THREE.Mesh(new THREE.CylinderGeometry(HOLE_R*0.95,HOLE_R*0.7,0.3,20), new THREE.MeshBasicMaterial({color:0x020202}));
+  cup.position.set(pos.x,-0.12,pos.z);
+  scene.add(cup);
+  levelObjs.push({mesh:rim},{mesh:flag},{mesh:cup});
 }
 function addBall(pos){
   const mat=new THREE.MeshPhongMaterial({color:0xffffff,shininess:130,specular:0x888888});
@@ -956,42 +1884,54 @@ function addBall(pos){
   ballBody.userData={prevSpeed:0};
 }
 
-// ─── DİNAMİK KAMERA ────────────────────────────
-// Kamera daima topun hareket yönüne "arkadan" bakar
+// ─── DİNAMİK KAMERA ───────────────────────────
+// Kamera topun arkasından, hareket yönüne göre döner.
+// Zemin plane ve gökyüzü kubbesi kamerayla senkronize kayar.
+const CAM_HEIGHT = 6.5;
+const CAM_DIST   = 10;
+const CAM_LOOK_Y = 0.3;
+
 function updateCameraFromYaw(bx, bz){
-  const sin=Math.sin(camYawCurrent), cos=Math.cos(camYawCurrent);
-  camera.position.set(
-    bx + sin * camArmLength,
-    camHeight,
-    bz + cos * camArmLength
-  );
-  camera.lookAt(bx, 0.5, bz);
+  const sin = Math.sin(camYawCurrent);
+  const cos = Math.cos(camYawCurrent);
+  camera.position.set(bx + sin * CAM_DIST, CAM_HEIGHT, bz + cos * CAM_DIST);
+  camera.lookAt(bx, CAM_LOOK_Y, bz);
 }
 
 function updateCamera(dt){
-  if(!ballMesh) return;
-  const bx=ballMesh.position.x, bz=ballMesh.position.z;
-  const vx=ballBody.velocity.x, vz=ballBody.velocity.z;
-  const spd=Math.sqrt(vx*vx+vz*vz);
+  if (!ballMesh) return;
+  const bx = ballMesh.position.x, bz = ballMesh.position.z;
+  const vx = ballBody.velocity.x, vz = ballBody.velocity.z;
+  const spd = Math.sqrt(vx*vx + vz*vz);
 
-  // Top hareket ediyorsa yaw hedefi: hız yönünün arkasına bak
-  if(spd>0.5){
-    // Topun gittiği yön + π (arkası)
+  // Top hareket ediyorsa kamerayı topun gittiği yöne döndür
+  if (spd > 0.35){
     const targetYaw = Math.atan2(vx, vz) + Math.PI;
-    // En kısa yoldan yaklaş
-    let diff = targetYaw - camYaw;
-    while(diff>Math.PI) diff-=Math.PI*2;
-    while(diff<-Math.PI) diff+=Math.PI*2;
-    camYaw += diff * Math.min(dt * 2.2, 0.12);
+    let d = targetYaw - camYaw;
+    while(d > Math.PI)  d -= Math.PI*2;
+    while(d < -Math.PI) d += Math.PI*2;
+    const turn = Math.min(0.16, dt * 3.2 * (0.4 + spd * 0.12));
+    camYaw += d * turn;
   }
 
-  // Yumuşat
-  let camDiff = camYaw - camYawCurrent;
-  while(camDiff>Math.PI) camDiff-=Math.PI*2;
-  while(camDiff<-Math.PI) camDiff+=Math.PI*2;
-  camYawCurrent += camDiff * Math.min(dt * 5.0, 0.15);
+  // Açıyı yumuşat
+  let cd = camYaw - camYawCurrent;
+  while(cd > Math.PI)  cd -= Math.PI*2;
+  while(cd < -Math.PI) cd += Math.PI*2;
+  camYawCurrent += cd * Math.min(dt * 8.0, 0.25);
 
   updateCameraFromYaw(bx, bz);
+
+  // Sonsuz zemin plane'yi kameranın XZ konumuna snap et (Y sabit)
+  scene.traverse(child => {
+    if (child.userData && child.userData.followCamera){
+      child.position.x = camera.position.x;
+      child.position.z = camera.position.z;
+    }
+  });
+
+  // Gökyüzü kubbesi de kamerayla hareket eder
+  if (skyDome) skyDome.position.copy(camera.position);
 }
 
 // ─── VURUŞ ────────────────────────────────────
@@ -1336,6 +2276,8 @@ function gameLoop(time=0){
     if(!levelComplete){
       checkHole();
       checkFall();
+      // Hareketli engelleri güncelle (spinner, sarkaç, bumper pulse)
+      animatedObstacles.forEach(o=>o.update(dt));
       if(activeMode){
         processAITurn(dt);
         checkAIBallStopped();
@@ -1346,9 +2288,18 @@ function gameLoop(time=0){
     }
   }
 
-  if(flagMesh) flagMesh.rotation.y=Math.sin(time*.002)*.09;
+  if(flagMesh) flagMesh.rotation.y = Math.sin(time * 0.002) * 0.09;
+
+  // Bulutları yavaşça sürükle
+  if(cloudGroup){
+    cloudGroup.children.forEach(c => {
+      c.position.x += (c.userData.driftSpeed || 0.15) * dt;
+      if(c.position.x > 90) c.position.x = -90;
+    });
+  }
+
   updateCamera(dt);
-  renderer.render(scene,camera);
+  renderer.render(scene, camera);
 }
 
 window.addEventListener('resize',()=>{if(engineReady)resizeEngine();initMenuBg();});
